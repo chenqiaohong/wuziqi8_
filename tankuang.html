@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #div {
+            width: 50px;
+            height: 50px;
+            border: 2px solid #000;
+            margin-top: 10px;
+        }
+        #btn {
+            background: #f00;
+            border: 0;
+            border-radius: 5px;
+            padding: 5px;
+            color: #fff;
+        }
+        #mask{
+            width: 100%;
+            height: 100%;
+            /*background: rgba(0,0,0,0.5);*/
+            position: absolute;
+            background: #000;
+            filter: alpha(opacity=50);
+            opacity: 0.5;
+            top: 0;
+            left: 0;
+            display: none;
+        }
+        #content{
+            position: absolute;
+            text-align: center;
+            background: #fff;
+            border: 20px solid #eee;
+            top: 50%;
+            left: 50%;
+            margin-left: -200px;
+            margin-top: -125px;
+            z-index: 5;
+            width: 400px;
+            height: 250px;
+            padding: 30px 0px 10px 50px;
+            display: none;
+        }
+        .choose{
+            text-align: left;
+            height: 50px;
+            line-height: 50px;
+        }
+        label{
+            margin-right:10px;
+            width: 100px;
+        }
+        button{
+            padding: 10px 15px;
+            margin-right: 5px;
+            display: inline-block;
+            border: none;
+            color: #fff;
+        }
+        #red{
+            background: red;
+        }
+        #yellow{
+            background: #ffc448;
+        }
+        #blue{
+            background: #111eff;
+        }
+        .footerBtn{
+            margin-top: 30px;
+            background: #2319ff;
+        }
+        button:hover{
+            background: #ff149c !important;
+            cursor: pointer;
+        }
+        #remove{
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            font-size: 30px;
+        }
+        #remove:hover{
+           cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>点击选择颜色</h1>
+    <button id="btn">点击选择</button>
+    <div id="div"></div>
+    <div id="mask"></div>
+    <div id="content">
+        <div id="remove">
+            X
+        </div>
+        <div class="choose">
+            <label for="">请选择背景颜色:</label>
+            <button id="red">红</button><button id="yellow">黄</button><button id="blue">蓝</button>
+        </div>
+        <div class="choose">
+            <label for="">请选择宽(px):</label>
+            <button id="widthTwo">200</button><button id="widthThree">300</button><button id="widthFour">400</button>
+        </div>
+        <div class="choose">
+            <label for="">请选择高(px):</label>
+            <button id="heightTwo">200</button><button id="heightThree">300</button><button id="heightFour">400</button>
+        </div>
+            <button id="restore" class="footerBtn">恢复</button> <button id="determine" class="footerBtn">确定</button>
+    </div>
+
+<script>
+    var oBtn = getId("btn");
+    var oDiv = getId("div");
+    var oMask = getId("mask");
+    var oContent= getId("content");
+    var oRed= getId("red");
+    var oYellow= getId("yellow");
+    var oBlue= getId("blue");
+    var oWidthTwo= getId("widthTwo");
+    var oWidthThree= getId("widthThree");
+    var oWidthFour= getId("widthFour");
+    var oHeightTwo= getId("heightTwo");
+    var oHeightThree= getId("heightThree");
+    var oHeightFour= getId("heightFour");
+    var oRestore= getId("restore");
+    var oDetermine= getId("determine");
+    var oRemove= getId("remove");
+
+    function getId(id){
+        return document.getElementById(id);
+    }
+    oBtn.onclick = function (){
+        oMask.style.display = "block";
+        oContent.style.display = "block";
+    }
+    oRed.onclick = function(){
+        oDiv.style.background = 'red';
+    }
+    oYellow.onclick = function(){
+        oDiv.style.background = '#ffc448';
+    }
+    oBlue.onclick = function(){
+        oDiv.style.background = '#111eff';
+    }
+    oWidthTwo.onclick = function(){
+        oDiv.style.width = '200px';
+    }
+    oWidthThree.onclick = function(){
+        oDiv.style.width = '300px';
+    }
+    oWidthFour.onclick = function(){
+        oDiv.style.width = '400px';
+    }
+    oHeightTwo.onclick = function(){
+        oDiv.style.height = '200px';
+    }
+    oHeightThree.onclick = function(){
+        oDiv.style.height = '300px';
+    }
+    oHeightFour.onclick = function(){
+        oDiv.style.height = '400px';
+    }
+    function change(){
+        oDiv.style.width = '50px';
+        oDiv.style.height = '50px';
+        oDiv.style.background = '#fff';
+        oMask.style.display = "none";
+        oContent.style.display = "none";
+    }
+    oRestore.onclick = change
+    oRemove.onclick = change
+    oDetermine.onclick = function(){
+        oMask.style.display = "none";
+        oContent.style.display = "none";
+    }
+</script>
+</body>
+</html>
