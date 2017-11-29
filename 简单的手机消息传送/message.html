@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>模拟手机聊天界面</title>
+    <style>
+        body{
+            background: #eee;
+        }
+        #content{
+            width: 350px;
+            height: 600px;
+            border: #fffdf8 3px solid;
+            border-radius: 10px;
+            margin: 0 auto;
+            background: #fff;
+            position: relative;
+            box-sizing:border-box;
+        }
+        #message_body{
+            padding: 20px;
+        }
+        #message_bottom{
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            padding: 0 20px;
+            box-sizing:border-box;
+        }
+        #expression{
+            
+        }
+        img{
+            width: 30px;
+            height: 30px;
+            vertical-align: middle;
+        }
+        img:hover{
+            cursor: pointer;
+        }
+        input{
+            margin-left: 10px;
+            height: 20px;
+            line-height: 20px;
+            width: 180px;
+        }
+        #img_arr{
+            position: absolute;
+            bottom: 0;
+            display: none;
+        }
+        #btn{
+            height: 26px;
+            line-height: 26px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <div id="message_body"></div>
+        <div id="message_bottom">
+            <div id="expression">
+                <img src="images/smile.jpg" id="img">
+                <input type="text" id="message">
+                <button id="btn">确定</button>
+            </div>
+        </div>
+        <div id="img_arr">
+            <img src="images/smile.jpg">
+            <img src="images/monkey.jpg">
+            <img src="images/timg.jpg" >
+        </div>
+    </div>
+
+    <script>
+        var message_body = document.getElementById("message_body");
+        var img = document.getElementById("img");
+        var message = document.getElementById("message");
+        var img_arr = document.getElementById("img_arr");
+        var btn = document.getElementById("btn");
+        img.onclick = function(){
+            img_arr.style.display = 'block';
+            var img_list = img_arr.getElementsByTagName("img");
+            for( var i = 0; i < img_list.length; i++){
+                img_list[i].onclick = function(){
+                    img.src = this.src;
+                    img_arr.style.display = 'none';
+                }
+            }
+        }
+        btn.onclick = function(){
+            console.log(img)
+            message_body.innerHTML += img.outerHTML + ' : ' + message.value + '<br/>'
+        }
+
+    </script>
+</body>
+</html>
